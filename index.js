@@ -4,48 +4,55 @@ const EventEmitter = require('events');
 
 const HOST = 'https://api.tradier.com/v1/';
 
-export default (username, password) => { 
-
-  const Tradier = rest.service((u, p) => {
-    this.defaults.username = u;
-    this.defaults.password = p;
+export default (accesstoken) => { 
+  const Tradier = rest.service(accesstoken => {
+    this.defaults.accesstoken = a;
   }, {
-    baseURL: HOST,
-
+    baseURL: HOST
   }, {
-      quotes(ticker) => {
-        return this.get(`markets/quotes?symbols=${ticker}`);
+      quote(ticker) {
+        return this.get(`markets/quotes?symbols=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      timesales(ticker) => { 
-        return this.get(`markets/timesales?symbol=${ticker}`);
+      timesales(ticker) { 
+        return this.get(`markets/timesales?symbol=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      optionchain(ticker) => {
-        return this.get(`markets/options/chains?symbol=${ticker}`);
+      optionchain(ticker) {
+        return this.get(`markets/options/chains?symbol=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      optionstrikes(ticker, expiration) => {
-        return this.get(`markets/options/strikes?symbol=${ticker}&expiration=${expiration}`);
+      optionstrikes(ticker, expiration) {
+        return this.get(`markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      optionexpirations(ticker) => {
-        return this.get(`markets/options/expirations?symbol=${ticker}`);
+      optionexpirations(ticker) {
+        return this.get(`markets/options/expirations?symbol=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      historical(ticker) => {
-        return this.get(`markets/history?symbol=${ticker}`);
+      historical(ticker) {
+        return this.get(`markets/history?symbol=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      intradaystatus() => {
-        return this.get(`markets/clock`);
+      intradaystatus() {
+        return this.get(`markets/clock`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      marketcalendar() => {
-        return this.get(`markets/calendar`);
+      marketcalendar() {
+        return this.get(`markets/calendar`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       },
-      companysearch(ticker) => {
-        return this.get(`markets/search?q=${ticker}`);
+      companysearch(ticker) {
+        return this.get(`markets/search?q=${ticker}`, { headers: {
+    "Authorization": `Bearer  ${accesstoken}` } });
       }
   });
-  
-  if (!username || !password) {
-    console.log("No password provided.");
-    let username = ""
-    let password = ""   
-  }
-}
 
+  if (!accesstoken) {
+    console.log("No access token provided.");
+    let accesstoken = ""; 
+  }
+
+  const tradier = new Tradier(accesstoken);
+  return tradier;
+}
