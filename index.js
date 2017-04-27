@@ -1,58 +1,158 @@
-const rest = require('restler');
 const Promise = require('bluebird');
 const EventEmitter = require('events');
 
 const HOST = 'https://api.tradier.com/v1/';
+    
+class Stocks {
+  constructor(accesstoken) {
+    this.accesstoken = accesstoken;
 
-export default (accesstoken) => { 
-  const Tradier = rest.service(accesstoken => {
-    this.defaults.accesstoken = a;
-  }, {
-    baseURL: HOST
-  }, {
-      quote(ticker) {
-        return this.get(`markets/quotes?symbols=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      timesales(ticker) { 
-        return this.get(`markets/timesales?symbol=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      optionchain(ticker) {
-        return this.get(`markets/options/chains?symbol=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      optionstrikes(ticker, expiration) {
-        return this.get(`markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      optionexpirations(ticker) {
-        return this.get(`markets/options/expirations?symbol=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      historical(ticker) {
-        return this.get(`markets/history?symbol=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      intradaystatus() {
-        return this.get(`markets/clock`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      marketcalendar() {
-        return this.get(`markets/calendar`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      },
-      companysearch(ticker) {
-        return this.get(`markets/search?q=${ticker}`, { headers: {
-    "Authorization": `Bearer  ${accesstoken}` } });
-      }
-  });
-
-  if (!accesstoken) {
-    console.log("No access token provided.");
-    let accesstoken = ""; 
+    if (!this.accesstoken) {
+      this._throw('Need a valid accesstoken');
+    }
   }
 
-  const tradier = new Tradier(accesstoken);
-  return tradier;
+  quote(ticker, callback) {
+    return axios.get(`${HOST}markets/quotes?symbols=${ticker}`, {
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}`
+      }
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  timesales(ticker, callback) { 
+    return axios.get(`${HOST}markets/timesales?symbol=${ticker}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  optionchain(ticker, callback) { 
+    return axios.get(`${HOST}markets/options/chains?symbol=${ticker}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  optionstrikes(ticker, expiration, callback) { 
+    return axios.get(`${HOST}markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  optionexpirations(ticker, callback) { 
+    return axios.get(`${HOST}markets/options/expirations?symbol=${ticker}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  historical(ticker, callback) { 
+    return axios.get(`${HOST}markets/history?symbol=${ticker}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  intradaystatus() {
+    return axios.get(`markets/clock`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  marketcalendar() {
+    return axios.get(`markets/calendar`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  companysearch(ticker) {
+    return axios.get(`markets/search?q=${ticker}`, { 
+      headers: {
+        "Authorization": `Bearer  ${this.accesstoken}` 
+      } 
+    })
+      .then(response => {
+        const { data } = response.data;
+        callback(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  _throw(e) {
+    if (typeof e === 'string') {
+      e = "Tradier Client | " + e
+    } else {
+      throw e
+    }
+  }
+
 }

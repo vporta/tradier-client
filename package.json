@@ -30,7 +30,7 @@
     "chai": "3.5.0"
   },
   "dependencies": {
-    "bluebird": "3.5.0",
-    "restler": "3.4.0"
+    "axios": "0.16.1",
+    "bluebird": "3.5.0"
   }
 }
