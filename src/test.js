@@ -75,6 +75,9 @@ describe('Tradier', () => {
     it('should respond to getPriceStats', () => { 
       expect(tradier).to.respondTo('getPriceStats');
     });
+    it('should respond to _throw', () => { 
+      expect(tradier).to.respondTo('_throw');
+    });
   });
 
   describe('#quote()', () => {
@@ -267,4 +270,17 @@ describe('Tradier', () => {
       assert.isFunction(getPriceStats)
     })
   });
+
+  describe('#_throw()', () => {
+    let tradier; 
+    let _throw;
+    beforeEach(() => {
+      tradier = new Tradier(process.env.ACCESS_TOKEN);
+      _throw = tradier._throw;
+    });
+    it('is a function', () => {
+      assert.isFunction(_throw)
+    })
+  });
+
 });

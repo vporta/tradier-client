@@ -12,7 +12,7 @@ class Tradier {
     }
   }
 
-  quote(ticker, callback) {
+  quote(ticker) {
     return axios.get(`${HOST}markets/quotes?symbols=${ticker}`, {
       headers: {
         "Authorization": `Bearer ${this.accesstoken}`
@@ -20,14 +20,21 @@ class Tradier {
     })
       .then(response => {
         const { quotes } = response.data;
-        callback(quotes);
+        return new Promise((resolve, reject) => {
+          if (quotes) {
+            resolve(quotes)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  timesales(ticker, callback) { 
+  timesales(ticker) { 
     return axios.get(`${HOST}markets/timesales?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -35,14 +42,21 @@ class Tradier {
     })
       .then(response => {
         const { series } = response.data;
-        callback(series);
+        return new Promise((resolve, reject) => {
+          if (series) {
+            resolve(series)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  optionchain(ticker, expiration, callback) { 
+  optionchain(ticker, expiration) { 
     return axios.get(`${HOST}markets/options/chains?symbol=${ticker}&expiration=${expiration} `, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -50,14 +64,21 @@ class Tradier {
     })
       .then(response => {
         const { options } = response.data;
-        callback(options);
+        return new Promise((resolve, reject) => {
+          if (options) {
+            resolve(options)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  optionstrikes(ticker, expiration, callback) { 
+  optionstrikes(ticker, expiration) { 
     return axios.get(`${HOST}markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -65,14 +86,21 @@ class Tradier {
     })
       .then(response => {
         const { strikes } = response.data;
-        callback(strikes);
+        return new Promise((resolve, reject) => {
+          if (strikes) {
+            resolve(strikes)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  optionexpirations(ticker, callback) { 
+  optionexpirations(ticker) { 
     return axios.get(`${HOST}markets/options/expirations?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -80,14 +108,21 @@ class Tradier {
     })
       .then(response => {
         const { expirations } = response.data;
-        callback(expirations);
+        return new Promise((resolve, reject) => {
+          if (expirations) {
+            resolve(expirations)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  historical(ticker, callback) { 
+  historical(ticker) { 
     return axios.get(`${HOST}markets/history?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -95,14 +130,21 @@ class Tradier {
     })
       .then(response => {
         const { history } = response.data;
-        callback(history);
+        return new Promise((resolve, reject) => {
+          if (history) {
+            resolve(history)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  intradaystatus(callback) {
+  intradaystatus() {
     return axios.get(`${HOST}markets/clock`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -110,14 +152,21 @@ class Tradier {
     })
       .then(response => {
         const { data } = response;
-        callback(data);
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  marketcalendar(callback) {
+  marketcalendar() {
     return axios.get(`${HOST}markets/calendar`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
@@ -125,7 +174,14 @@ class Tradier {
     })
       .then(response => {
         const { data } = response;
-        callback(data);
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
@@ -140,112 +196,168 @@ class Tradier {
     })
       .then(response => {
         const { data } = response.data;
-        callback(data);
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getCompanyInfo(ticker, callback) {
+  getCompanyInfo(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/company?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getCorporateCalendar(ticker, callback) {
+  getCorporateCalendar(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/calendars?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getDividendInfo(ticker, callback) {
+  getDividendInfo(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/dividends?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getCorporateActions(ticker, callback) {
+  getCorporateActions(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/corporate_actions?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getRatios(ticker, callback) {
+  getRatios(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/ratios?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getCorporateFinancials(ticker, callback) {
+  getCorporateFinancials(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/financials?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
       });
   }
 
-  getPriceStats(ticker, callback) {
+  getPriceStats(ticker) {
     return axios.get(`${HOST_BETA}markets/fundamentals/statistics?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
     })
       .then(response => {
-        // const { data } = response.data;
-        callback(response);
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
       })
       .catch(error => {
         console.log(error);
@@ -254,12 +366,13 @@ class Tradier {
 
   _throw(e) {
     if (typeof e === 'string') {
-      e = "Tradier Client | " + e
+      e = "Tradier Client | " + e;
     } else {
-      throw e
+      throw e;
     }
   }
 
 }
+
 
 module.exports = Tradier;

@@ -1,5 +1,6 @@
 # tradier-client
 
+
 NPM package will be published soon. 
 
 For now, begin by cloning the repo: `git clone https://github.com/vporta/tradier-client.git`. Then `npm install`
@@ -10,21 +11,31 @@ const tradier = new Tradier('My Tradier Bearer Token');
 
 ```
 
-### Quotes ###
+### Quote ###
 
 ```
-tradier.quote('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .quote('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Time and Sales ### 
 
 ```
-tradier.timeandsales('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .timesales('AAPL')
+  .then((ts) => {
+    console.log(ts)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
@@ -32,9 +43,14 @@ tradier.timeandsales('AAPL', data => {
 ### Option Chains ###
 
 ```
-tradier.optionchain('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .optionchain('AAPL')
+  .then((oc) => {
+    console.log(oc)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
@@ -42,9 +58,14 @@ tradier.optionchain('AAPL', data => {
 ### Option Strikes ### 
 
 ```
-tradier.optionstrikes('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .optionstrikes('AAPL')
+  .then((os) => {
+    console.log(os)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
@@ -52,9 +73,14 @@ tradier.optionstrikes('AAPL', data => {
 ### Option Expirations ###
 
 ```
-tradier.optionexpirations('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .optionexpirations('AAPL')
+  .then((oe) => {
+    console.log(oe)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
@@ -62,99 +88,166 @@ tradier.optionexpirations('AAPL', data => {
 ### Historical Pricing ###
 
 ```
-tradier.historical('AAPL', data => {
-  console.log(data);
+tradier
+  .historical('AAPL')
+  .then((history) => {
+    console.log(history)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 });
+
+/* returns an array of objects
+
+{ day: 
+  [ { date: '2017-01-03',
+       open: 115.8,
+       high: 116.33,
+       low: 114.76,
+       close: 116.15,
+       volume: 28781865 }... 
+  ]
+
+*/
 
 ```
 
 ### Intraday Status ###
 
 ```
-tradier.intradaystatus('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .intradaystatus('AAPL')
+  .then((intraday) => {
+    console.log(intraday)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Market Calendar ###
 
 ```
-tradier.marketcalendar('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .marketcalendar('AAPL')
+  .then((mc) => {
+    console.log(mc)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Company Search ###
 
 ```
-tradier.companysearch('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .companysearch('AAPL')
+  .then((cs) => {
+    console.log(cs)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Company Information ###
 
 ```
-tradier.getCompanyInfo('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .getCompanyInfo('AAPL')
+  .then((ci) => {
+    console.log(ci)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Corporate Calendar ###
 
 ```
-tradier.getCorporateCalendar('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .getCorporateCalendar('AAPL')
+  .then((cc) => {
+    console.log(cc)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Dividend Information ###
 
 ```
-tradier.getDividendInfo('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .getDividendInfo('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Corporate Actions ###
 
 ```
-tradier.getCorporateActions('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .getCorporateActions('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Ratios ###
 
 ```
-tradier.getRatios('AAPL', data => {
-  console.log(data);
-});
+tradier
+  .getRatios('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 
 ```
 
 ### Corporate Financials ###
 
 ```
-tradier.getCorporateFinancials('AAPL', data => {
-  console.log(data);
-});
-
+tradier
+  .getCorporateFinancials('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 ```
 
 ### Price Statistics ###
 
 ```
-tradier.getPriceStats('AAPL', data => {
-  console.log(data);
-});
-
+tradier
+  .getPriceStats('AAPL')
+  .then((quotes) => {
+    console.log(quotes)
+  })
+  .catch((error) => {
+    console.log(error);
+  })
 ```
 
