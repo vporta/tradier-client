@@ -1,10 +1,12 @@
 {
   "name": "TradierClient",
   "version": "1.0.0",
-  "description": "Node wrapper for the Tradier API",
-  "main": "index.js",
+  "description": "Node API wrapper for the Tradier API",
+  "main": "build/index.js",
   "scripts": {
-    "test": "mocha src/test.js --compilers js:babel-register",
+    "dev": "watch 'npm run build' src",
+    "build": "babel src -d build",
+    "test": "mocha test/test.js --compilers js:babel-register",
     "start": "babel-node --presets es2015 src/index.js"
   },
   "keywords": [
@@ -12,19 +14,20 @@
     "stock-prices",
     "sdk",
     "finance",
-    "fintech"
+    "fintech",
+    "market-data"
   ],
   "author": "Vincent Porta <vporta7@gmail.com> (http://www.vincentjporta.com/)",
   "license": "MIT",
   "babel": {
     "presets": [
-      "es2015",
-      "stage-2"
+      "latest"
     ]
   },
   "devDependencies": {
     "babel-cli": "6.24.1",
     "babel-preset-es2015": "6.24.1",
+    "babel-preset-latest": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.24.1",
     "chai": "3.5.0",

@@ -1,19 +1,22 @@
 import axios from 'axios';
 
-const HOST = 'https://sandbox.tradier.com/v1/';
-const HOST_BETA = 'https://api.tradier.com/beta/';
-
 class Tradier {
-  constructor(accesstoken) {
+  constructor(accesstoken, _endpoint='') {
     this.accesstoken = accesstoken;
+    this._endpoint = _endpoint.toLowerCase();
+    this._host = 'https://api.tradier.com/v1/';
+    this._hostBeta = 'https://api.tradier.com/beta/';
 
     if (!this.accesstoken) {
       this._throw('Need a valid accesstoken');
     }
+    if (this._endpoint === 'sandbox') {
+      this._host = 'https://sandbox.tradier.com/v1/';
+    }
   }
 
   quote(ticker) {
-    return axios.get(`${HOST}markets/quotes?symbols=${ticker}`, {
+    return axios.get(`${this._host}markets/quotes?symbols=${ticker}`, {
       headers: {
         "Authorization": `Bearer ${this.accesstoken}`
       }
@@ -35,7 +38,7 @@ class Tradier {
   }
 
   timesales(ticker) { 
-    return axios.get(`${HOST}markets/timesales?symbol=${ticker}`, { 
+    return axios.get(`${this._host}markets/timesales?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -57,7 +60,7 @@ class Tradier {
   }
 
   optionchain(ticker, expiration) { 
-    return axios.get(`${HOST}markets/options/chains?symbol=${ticker}&expiration=${expiration} `, { 
+    return axios.get(`${this._host}markets/options/chains?symbol=${ticker}&expiration=${expiration} `, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -79,7 +82,7 @@ class Tradier {
   }
 
   optionstrikes(ticker, expiration) { 
-    return axios.get(`${HOST}markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { 
+    return axios.get(`${this._host}markets/options/strikes?symbol=${ticker}&expiration=${expiration}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -101,7 +104,7 @@ class Tradier {
   }
 
   optionexpirations(ticker) { 
-    return axios.get(`${HOST}markets/options/expirations?symbol=${ticker}`, { 
+    return axios.get(`${this._host}markets/options/expirations?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -123,7 +126,7 @@ class Tradier {
   }
 
   historical(ticker) { 
-    return axios.get(`${HOST}markets/history?symbol=${ticker}`, { 
+    return axios.get(`${this._host}markets/history?symbol=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -145,7 +148,7 @@ class Tradier {
   }
 
   intradaystatus() {
-    return axios.get(`${HOST}markets/clock`, { 
+    return axios.get(`${this._host}markets/clock`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -167,7 +170,7 @@ class Tradier {
   }
 
   marketcalendar() {
-    return axios.get(`${HOST}markets/calendar`, { 
+    return axios.get(`${this._host}markets/calendar`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -189,7 +192,7 @@ class Tradier {
   }
 
   companysearch(ticker) {
-    return axios.get(`${HOST}markets/search?q=${ticker}`, { 
+    return axios.get(`${this._host}markets/search?q=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -211,7 +214,7 @@ class Tradier {
   }
 
   getCompanyInfo(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/company?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/company?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -233,7 +236,7 @@ class Tradier {
   }
 
   getCorporateCalendar(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/calendars?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/calendars?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -255,7 +258,7 @@ class Tradier {
   }
 
   getDividendInfo(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/dividends?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/dividends?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -277,7 +280,7 @@ class Tradier {
   }
 
   getCorporateActions(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/corporate_actions?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/corporate_actions?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -299,7 +302,7 @@ class Tradier {
   }
 
   getRatios(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/ratios?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/ratios?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -321,7 +324,7 @@ class Tradier {
   }
 
   getCorporateFinancials(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/financials?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/financials?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -343,7 +346,7 @@ class Tradier {
   }
 
   getPriceStats(ticker) {
-    return axios.get(`${HOST_BETA}markets/fundamentals/statistics?symbols=${ticker}`, { 
+    return axios.get(`${this._hostBeta}markets/fundamentals/statistics?symbols=${ticker}`, { 
       headers: {
         "Authorization": `Bearer ${this.accesstoken}` 
       } 
@@ -371,8 +374,6 @@ class Tradier {
       throw e;
     }
   }
-
 }
-
 
 module.exports = Tradier;
