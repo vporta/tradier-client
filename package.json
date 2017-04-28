@@ -1,5 +1,5 @@
 {
-  "name": "TradierClient",
+  "name": "tradier-client",
   "version": "1.0.0",
   "description": "Node API wrapper for the Tradier API",
   "main": "build/index.js",
@@ -7,6 +7,7 @@
     "dev": "watch 'npm run build' src",
     "build": "babel src -d build",
     "test": "mocha test/test.js --compilers js:babel-register",
+    "test:watch": "npm test -- --watch",
     "start": "babel-node --presets es2015 src/index.js",
     "prepublish": "npm run build"
   },
