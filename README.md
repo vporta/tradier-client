@@ -1,5 +1,11 @@
 # tradier-client
 
+[![npm](https://img.shields.io/npm/v/npm.svg?style=plastic)]([![npm](https://img.shields.io/npm/dm/localeval.svg?style=plastic)](https://www.npmjs.com/package/tradier-client))
+
+[![npm](https://img.shields.io/npm/dm/localeval.svg?style=plastic)](https://www.npmjs.com/package/tradier-client)
+
+[![npm](https://img.shields.io/npm/l/express.svg?style=plastic)](https://www.npmjs.com/package/tradier-client)
+
 tradier-client is a promise-based Node.js wrapper for the Tradier API. It currently works with the *Market Data* and *Fundamentals* API. 
 
 ## API Keys 
