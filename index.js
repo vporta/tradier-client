@@ -263,7 +263,7 @@ class Tradier {
 
 }
 
-const tradier = new Tradier('6hKl4NG2doRgXucu7kj8kJ9SVw0h');
+const tradier = new Tradier();
 
 tradier.getCorporateCalendar('AAPL', data => {
   console.log(data);
