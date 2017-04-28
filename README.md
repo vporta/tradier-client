@@ -188,8 +188,8 @@ tradier
 ```
 tradier
   .getDividendInfo('AAPL')
-  .then((quotes) => {
-    console.log(quotes)
+  .then((di) => {
+    console.log(di)
   })
   .catch((error) => {
     console.log(error);
@@ -202,8 +202,8 @@ tradier
 ```
 tradier
   .getCorporateActions('AAPL')
-  .then((quotes) => {
-    console.log(quotes)
+  .then((ca) => {
+    console.log(ca)
   })
   .catch((error) => {
     console.log(error);
@@ -216,8 +216,8 @@ tradier
 ```
 tradier
   .getRatios('AAPL')
-  .then((quotes) => {
-    console.log(quotes)
+  .then((ratios) => {
+    console.log(ratios)
   })
   .catch((error) => {
     console.log(error);
@@ -230,8 +230,8 @@ tradier
 ```
 tradier
   .getCorporateFinancials('AAPL')
-  .then((quotes) => {
-    console.log(quotes)
+  .then((cf) => {
+    console.log(cf)
   })
   .catch((error) => {
     console.log(error);
@@ -243,8 +243,8 @@ tradier
 ```
 tradier
   .getPriceStats('AAPL')
-  .then((quotes) => {
-    console.log(quotes)
+  .then((ps) => {
+    console.log(ps)
   })
   .catch((error) => {
     console.log(error);
