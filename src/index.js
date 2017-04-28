@@ -1,7 +1,6 @@
-const Promise = require('bluebird');
-const EventEmitter = require('events');
-const axios = require('axios');
-const HOST = 'https://api.tradier.com/v1/';
+import axios from 'axios';
+
+const HOST = 'https://sandbox.tradier.com/v1/';
 const HOST_BETA = 'https://api.tradier.com/beta/';
 
 class Tradier {
@@ -262,11 +261,5 @@ class Tradier {
   }
 
 }
-
-const tradier = new Tradier();
-
-tradier.getCorporateCalendar('AAPL', data => {
-  console.log(data);
-});
 
 module.exports = Tradier;

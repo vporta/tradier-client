@@ -4,8 +4,8 @@
   "description": "Node wrapper for the Tradier API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node --presets es2015 index.js"
+    "test": "mocha src/test.js --compilers js:babel-register",
+    "start": "babel-node --presets es2015 src/index.js"
   },
   "keywords": [
     "tradier",
@@ -27,7 +27,8 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.24.1",
-    "chai": "3.5.0"
+    "chai": "3.5.0",
+    "mocha": "3.3.0"
   },
   "dependencies": {
     "axios": "0.16.1",
