@@ -8,24 +8,25 @@ You will receive your Tradier API Access Token after: [creating an account](http
 
 ## Installation
 
-`npm i -S tradier-client`
+```shell
+$ npm i -S tradier-client
+```
 
 
 ## Example Usage 
 
 Require or import the package. 
-```
+```javascript
 const Tradier = require('tradier-client');
 
-// or
-
+// ES2015 
 import Tradier from 'tradier-client';
 
 ```
 
 When creating a new `Tradier` instance, you must specify if you are in a sandbox account. See below for a description. 
 
-```
+```javascript
 // If you are not in a sandbox account, you only need to pass in your access token and it takes care of the rest:
 const tradier = new Tradier('TRADIER_ACCESS_TOKEN');
 
@@ -75,7 +76,7 @@ tradier
 
 ### Quote ###
 
-```
+```javascript
 tradier
   .quote('AAPL')  // For multiple quotes: .quote('AAPL,KO,S')
   .then(quote => {
@@ -88,7 +89,7 @@ tradier
 
 ### Time and Sales ### 
 
-```
+```javascript
 tradier
   .timesales('AAPL')
   .then(ts => {
@@ -101,7 +102,7 @@ tradier
 
 ### Option Chains ###
 
-```
+```javascript
 tradier
   .optionchain('AAPL')
   .then(oc => {
@@ -114,7 +115,7 @@ tradier
 
 ### Option Strikes ### 
 
-```
+```javascript
 tradier
   .optionstrikes('AAPL')
   .then(os => {
@@ -127,7 +128,7 @@ tradier
 
 ### Option Expirations ###
 
-```
+```javascript
 tradier
   .optionexpirations('AAPL')
   .then(oe => {
@@ -140,7 +141,7 @@ tradier
 
 ### Historical Pricing ###
 
-```
+```javascript
 tradier
   .historical('AAPL')
   .then(history => {
@@ -168,7 +169,7 @@ tradier
 
 ### Intraday Status ###
 
-```
+```javascript
 tradier
   .intradaystatus('AAPL')
   .then(intraday => {
@@ -181,7 +182,7 @@ tradier
 
 ### Market Calendar ###
 
-```
+```javascript
 tradier
   .marketcalendar('AAPL')
   .then(mc => {
@@ -194,7 +195,7 @@ tradier
 
 ### Company Search ###
 
-```
+```javascript
 tradier
   .companysearch('AAPL')
   .then(cs => {
@@ -207,7 +208,7 @@ tradier
 
 ### Company Information ###
 
-```
+```javascript
 tradier
   .getCompanyInfo('AAPL')
   .then(ci => {
@@ -220,7 +221,7 @@ tradier
 
 ### Corporate Calendar ###
 
-```
+```javascript
 tradier
   .getCorporateCalendar('AAPL')
   .then(cc => {
@@ -233,7 +234,7 @@ tradier
 
 ### Dividend Information ###
 
-```
+```javascript
 tradier
   .getDividendInfo('AAPL')
   .then(di => {
@@ -246,7 +247,7 @@ tradier
 
 ### Corporate Actions ###
 
-```
+```javascript
 tradier
   .getCorporateActions('AAPL')
   .then(ca => {
@@ -259,7 +260,7 @@ tradier
 
 ### Ratios ###
 
-```
+```javascript
 tradier
   .getRatios('AAPL')
   .then(ratios => {
@@ -272,7 +273,7 @@ tradier
 
 ### Corporate Financials ###
 
-```
+```javascript
 tradier
   .getCorporateFinancials('AAPL')
   .then(cf => {
@@ -285,7 +286,7 @@ tradier
 
 ### Price Statistics ###
 
-```
+```javascript
 tradier
   .getPriceStats('AAPL')
   .then(ps => {
@@ -300,11 +301,11 @@ tradier
 ## Endpoints 
 
 API Endpoints used include:
-```
-Sandbox: https://sandbox.tradier.com/v1/
-API: https://api.tradier.com/v1/
-Beta: https://api.tradier.com/beta/
-```
+
+Sandbox: `https://sandbox.tradier.com/v1/`
+API: `https://api.tradier.com/v1/`
+Beta: `https://api.tradier.com/beta/`
+
 
 
 ## Contribute 
