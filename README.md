@@ -4,7 +4,7 @@ tradier-client is a promise-based Node.js wrapper for the Tradier API. It curren
 
 ## API Keys 
 
-You will receive your Tradier API Access Token after creating an account: [creating an account](https://developer.tradier.com)
+You will receive your Tradier API Access Token after: [creating an account](https://developer.tradier.com)
 
 ## Installation
 
@@ -44,7 +44,6 @@ tradier
       Low: ${quote.low} 
       Close: ${quote.close}
       Previous: ${quote.prevclose}  
-
     `);
   })
   .catch(error => {
@@ -56,6 +55,23 @@ tradier
 
 ## Documentation 
 
+### Methods
+  - [Quote](https://github.com/vporta/tradier-client#quote)
+  - [Time and Sales](https://github.com/vporta/tradier-client#time-and-sales)
+  - [Option Chains](https://github.com/vporta/tradier-client#option-chains)
+  - [Option Strikes](https://github.com/vporta/tradier-client#option-strikes)
+  - [Option Expirations](https://github.com/vporta/tradier-client#option-expirations)
+  - [Historical Pricing](https://github.com/vporta/tradier-client#historical-pricing)
+  - [Intraday Status](https://github.com/vporta/tradier-client#intraday-status)
+  - [Market Calendar](https://github.com/vporta/tradier-client#market-calendar)
+  - [Company Search](https://github.com/vporta/tradier-client#company-search)
+  - [Company Information](https://github.com/vporta/tradier-client#company-information)
+  - [Corporate Calendar](https://github.com/vporta/tradier-client#corporate-calendar)
+  - [Dividend Information](https://github.com/vporta/tradier-client#dividend-information)
+  - [Corporate Actions](https://github.com/vporta/tradier-client#corporate-actions)
+  - [Ratios](https://github.com/vporta/tradier-client#ratios)
+  - [Corporate Financials](https://github.com/vporta/tradier-client#corporate-financials)
+  - [Price Statistics](https://github.com/vporta/tradier-client#price-statistics)
 
 ### Quote ###
 
