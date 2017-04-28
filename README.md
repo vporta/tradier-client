@@ -1,38 +1,160 @@
 # tradier-client
 
+NPM package will be published soon. 
+
+For now, begin by cloning the repo: `git clone https://github.com/vporta/tradier-client.git`. Then `npm install`
+
+Grab your Token from the Tradier website. 
+```
+const tradier = new Tradier('My Tradier Bearer Token');
+
+```
 
 ### Quotes ###
 
-`https://api.tradier.com/v1/markets/quotes?symbols=`
+```
+tradier.quote('AAPL', data => {
+  console.log(data);
+});
 
+```
 
 ### Time and Sales ### 
 
-`https://api.tradier.com/v1/markets/timesales?symbol=`
+```
+tradier.timeandsales('AAPL', data => {
+  console.log(data);
+});
+
+```
 
 
 ### Option Chains ###
 
-`https://api.tradier.com/v1/markets/options/chains?symbol=`
+```
+tradier.optionchain('AAPL', data => {
+  console.log(data);
+});
+
+```
 
 
 ### Option Strikes ### 
 
-`https://api.tradier.com/v1/markets/options/strikes?symbol=`
+```
+tradier.optionstrikes('AAPL', data => {
+  console.log(data);
+});
+
+```
 
 
 ### Option Expirations ###
 
-`https://api.tradier.com/v1/markets/options/expirations?symbol=`
+```
+tradier.optionexpirations('AAPL', data => {
+  console.log(data);
+});
+
+```
 
 
 ### Historical Pricing ###
-`https://api.tradier.com/v1/markets/history?symbol=`
 
+```
+tradier.historical('AAPL', data => {
+  console.log(data);
+});
+
+```
 
 ### Intraday Status ###
 
-`https://api.tradier.com/v1/markets/clock`
+```
+tradier.intradaystatus('AAPL', data => {
+  console.log(data);
+});
 
+```
 
+### Market Calendar ###
+
+```
+tradier.marketcalendar('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Company Search ###
+
+```
+tradier.companysearch('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Company Information ###
+
+```
+tradier.getCompanyInfo('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Corporate Calendar ###
+
+```
+tradier.getCorporateCalendar('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Dividend Information ###
+
+```
+tradier.getDividendInfo('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Corporate Actions ###
+
+```
+tradier.getCorporateActions('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Ratios ###
+
+```
+tradier.getRatios('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Corporate Financials ###
+
+```
+tradier.getCorporateFinancials('AAPL', data => {
+  console.log(data);
+});
+
+```
+
+### Price Statistics ###
+
+```
+tradier.getPriceStats('AAPL', data => {
+  console.log(data);
+});
+
+```
 

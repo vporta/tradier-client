@@ -252,7 +252,7 @@ class Tradier {
         console.log(error);
       });
   }
-  
+
   _throw(e) {
     if (typeof e === 'string') {
       e = "Tradier Client | " + e
@@ -269,4 +269,4 @@ tradier.getCorporateCalendar('AAPL', data => {
   console.log(data);
 });
 
-// export default Tradier;
+module.exports = Tradier;
