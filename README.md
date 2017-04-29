@@ -176,7 +176,7 @@ tradier
 
 ```javascript
 tradier
-  .intradaystatus('AAPL')
+  .intradaystatus()
   .then(intraday => {
     console.log(intraday)
   })
@@ -189,7 +189,7 @@ tradier
 
 ```javascript
 tradier
-  .marketcalendar('AAPL')
+  .marketcalendar()
   .then(mc => {
     console.log(mc)
   })
