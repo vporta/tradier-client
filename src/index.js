@@ -374,6 +374,41 @@ class Tradier {
       throw e;
     }
   }
+
+  lookup(queryParams = {}) {
+    //TODO: use module for building query
+    const params = Object.assign({
+      q: null,
+      exchanges: [],
+      types: [],
+    }, queryParams);
+    const {q, exchanges, types} = params;
+    const filteredQuery = [
+      q !== null && `q=${q}` || null,
+      exchanges.length !== 0 && `exchanges=${exchanges.join(',')}` || null,
+      types.length !== 0 && `types=${types.join(',')}` || null,
+    ];
+    const query = filteredQuery.filter( q => q !== null).join('&');
+    return axios.get(`${this._hostBeta}markets/lookup?${query}`, {
+      headers: {
+        "Authorization": `Bearer ${this.accesstoken}`
+      }
+    })
+      .then(response => {
+        const { data } = response.data;
+        return new Promise((resolve, reject) => {
+          if (data) {
+            resolve(data)
+          } else {
+            let error = new Error();
+            reject(error);
+          }
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 }
 
 module.exports = Tradier;

@@ -1,5 +1,10 @@
-import { expect, should, assert } from 'chai';
+import chai, { expect, should, assert } from 'chai';
 import Tradier from '../src/index';
+import axios from 'axios';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
+
+chai.use(sinonChai);
  
 describe('Tradier', () => {
 
@@ -282,5 +287,36 @@ describe('Tradier', () => {
       assert.isFunction(_throw)
     })
   });
+
+  describe('#lookup()', () => {
+    let tradier;
+    beforeEach(() => {
+      tradier = new Tradier(process.env.ACCESS_TOKEN);
+      axios.get = sinon.spy(() => Promise.resolve({data:{data: {}}}));
+    });
+    it('is a function', () => {
+      assert.isFunction(tradier.lookup)
+    });
+    it('fetch with q', () => {
+      tradier.lookup({q: 'MSFT'});
+      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?q=MSFT`);
+    });
+    it('fetch with exchanges', () => {
+      tradier.lookup({exchanges: ['N', 'V']});
+      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?exchanges=N,V`);
+    });
+    it('fetch with types', () => {
+      tradier.lookup({types: ['stock', 'etf']});
+      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?types=stock,etf`);
+    });
+    it('fetch with q, exchanges and types', () => {
+      tradier.lookup({
+        types: ['stock', 'etf'],
+        q: 'MSFT',
+        exchanges: ['N', 'V']
+      });
+      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?q=MSFT&exchanges=N,V&types=stock,etf`);
+    });
+});
 
 });
