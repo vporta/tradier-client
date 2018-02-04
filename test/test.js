@@ -292,7 +292,7 @@ describe('Tradier', () => {
     let tradier;
     beforeEach(() => {
       tradier = new Tradier(process.env.ACCESS_TOKEN);
-      axios.get = sinon.spy(() => Promise.resolve({data:{data: {}}}));
+      axios.get = sinon.spy(() => Promise.resolve({data:{}}));
     });
     it('is a function', () => {
       assert.isFunction(tradier.lookup)

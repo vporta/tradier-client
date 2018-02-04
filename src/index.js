@@ -395,7 +395,7 @@ class Tradier {
       }
     })
       .then(response => {
-        const { data } = response.data;
+        const { data } = response;
         return new Promise((resolve, reject) => {
           if (data) {
             resolve(data)
