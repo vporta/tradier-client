@@ -1,5 +1,5 @@
 import { expect, should, assert } from 'chai';
-import Tradier from './index';
+import Tradier from '../src/index';
  
 describe('Tradier', () => {
 
