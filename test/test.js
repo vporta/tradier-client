@@ -299,15 +299,15 @@ describe('Tradier', () => {
     });
     it('fetch with q', () => {
       tradier.lookup({q: 'MSFT'});
-      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?q=MSFT`);
+      expect(axios.get).to.have.been.calledWith(`${tradier._host}markets/lookup?q=MSFT`);
     });
     it('fetch with exchanges', () => {
       tradier.lookup({exchanges: ['N', 'V']});
-      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?exchanges=N,V`);
+      expect(axios.get).to.have.been.calledWith(`${tradier._host}markets/lookup?exchanges=N,V`);
     });
     it('fetch with types', () => {
       tradier.lookup({types: ['stock', 'etf']});
-      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?types=stock,etf`);
+      expect(axios.get).to.have.been.calledWith(`${tradier._host}markets/lookup?types=stock,etf`);
     });
     it('fetch with q, exchanges and types', () => {
       tradier.lookup({
@@ -315,7 +315,7 @@ describe('Tradier', () => {
         q: 'MSFT',
         exchanges: ['N', 'V']
       });
-      expect(axios.get).to.have.been.calledWith(`${tradier._hostBeta}markets/lookup?q=MSFT&exchanges=N,V&types=stock,etf`);
+      expect(axios.get).to.have.been.calledWith(`${tradier._host}markets/lookup?q=MSFT&exchanges=N,V&types=stock,etf`);
     });
 });
 

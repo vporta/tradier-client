@@ -389,7 +389,7 @@ class Tradier {
       types.length !== 0 && `types=${types.join(',')}` || null,
     ];
     const query = filteredQuery.filter( q => q !== null).join('&');
-    return axios.get(`${this._hostBeta}markets/lookup?${query}`, {
+    return axios.get(`${this._host}markets/lookup?${query}`, {
       headers: {
         "Authorization": `Bearer ${this.accesstoken}`
       }
