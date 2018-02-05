@@ -409,12 +409,12 @@ var Tradier = function () {
       var query = filteredQuery.filter(function (q) {
         return q !== null;
       }).join('&');
-      return _axios2.default.get(this._hostBeta + 'markets/lookup?' + query, {
+      return _axios2.default.get(this._host + 'markets/lookup?' + query, {
         headers: {
           "Authorization": 'Bearer ' + this.accesstoken
         }
       }).then(function (response) {
-        var data = response.data.data;
+        var data = response.data;
 
         return new Promise(function (resolve, reject) {
           if (data) {
