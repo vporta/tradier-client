@@ -33,7 +33,9 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.24.1",
     "chai": "3.5.0",
-    "mocha": "3.3.0"
+    "mocha": "3.3.0",
+    "sinon": "^4.2.2",
+    "sinon-chai": "^2.14.0"
   },
   "dependencies": {
     "axios": "0.16.1",

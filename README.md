@@ -78,6 +78,7 @@ tradier
   - [Ratios](https://github.com/vporta/tradier-client#ratios)
   - [Corporate Financials](https://github.com/vporta/tradier-client#corporate-financials)
   - [Price Statistics](https://github.com/vporta/tradier-client#price-statistics)
+  - [Lookup a symbol](https://github.com/vporta/tradier-client#lookup-a-symbol)
 
 ### Quote ###
 
@@ -302,6 +303,27 @@ tradier
   })
 ```
 
+### Lookup a symbol ###
+
+> Note: At least one of the following parameters is required: q, exchanges, types
+
+```javascript
+
+const params = {
+  q: 'goo', 
+  exchanges: ['Q', 'N'],
+  types: ['stock', 'etf'],
+};
+
+tradier
+  .lookup(params)
+  .then(symbols => {
+    console.log(symbols)
+  })
+  .catch(error => {
+    console.log(error);
+  })
+```
 
 ## Endpoints 
 

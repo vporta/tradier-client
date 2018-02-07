@@ -390,6 +390,44 @@ var Tradier = function () {
         throw e;
       }
     }
+  }, {
+    key: 'lookup',
+    value: function lookup() {
+      var queryParams = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+      //TODO: use module for building query
+      var params = Object.assign({
+        q: null,
+        exchanges: [],
+        types: []
+      }, queryParams);
+      var q = params.q,
+          exchanges = params.exchanges,
+          types = params.types;
+
+      var filteredQuery = [q !== null && 'q=' + q || null, exchanges.length !== 0 && 'exchanges=' + exchanges.join(',') || null, types.length !== 0 && 'types=' + types.join(',') || null];
+      var query = filteredQuery.filter(function (q) {
+        return q !== null;
+      }).join('&');
+      return _axios2.default.get(this._host + 'markets/lookup?' + query, {
+        headers: {
+          "Authorization": 'Bearer ' + this.accesstoken
+        }
+      }).then(function (response) {
+        var data = response.data;
+
+        return new Promise(function (resolve, reject) {
+          if (data) {
+            resolve(data);
+          } else {
+            var error = new Error();
+            reject(error);
+          }
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   }]);
 
   return Tradier;
